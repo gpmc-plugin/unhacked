@@ -1,0 +1,25 @@
+name: Unhacked
+version: '${version}'
+main: me.pythontest.unhacked.unhacked.Unhacked
+api-version: 1.18
+authors: [ pythontest ]
+description: Antycheat
+commands:
+  unhacked:
+    description: main command to use AntyCheat
+    usage: /<command> <module> <user>
+    permission: unhacked.command
+permissions:
+  unhacked.bypass:
+    description: allow you to bypass antycheat
+    default: op
+  unhacked.remove:
+    description: allow you to remove user from the server as AntyCheat
+    default: op
+    children:
+      unhacked.command: true
+  unhacked.test:
+    description: test
+    default: op
+    children:
+      unhacked.command: true

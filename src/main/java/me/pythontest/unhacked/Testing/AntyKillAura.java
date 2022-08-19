@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 
 public class AntyKillAura {
     EntityDamageByEntityEvent e;
-    final double RaycastTolerance = 0.5;
+    final double RaycastTolerance = 0.75;
     public AntyKillAura(EntityDamageByEntityEvent event){
         this.e = event;
 

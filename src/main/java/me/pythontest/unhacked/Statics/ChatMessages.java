@@ -9,6 +9,6 @@ public class ChatMessages {
         return Component.text("[Unhacked] "+username+" Failed "+testID+"(hover for more info) "+String.format("[%s/%s]",testFailed,testToFailed), NamedTextColor.RED).hoverEvent(HoverEvent.showText(moreInfo));
     }
     public static Component testFailedConsle(String username, String testID,Component moreInfo, Integer testFailed, Integer testToFailed){
-        return Component.text("[Unhacked] "+username+" Failed "+testID+"(hover for more info) "+String.format("[%s/%s]\n",testFailed,testToFailed), NamedTextColor.RED).append(moreInfo);
+        return Component.text("[Unhacked] "+username+" Failed "+testID+" "+String.format("[%s/%s]\n",testFailed,testToFailed), NamedTextColor.RED).append(moreInfo);
     }
 }

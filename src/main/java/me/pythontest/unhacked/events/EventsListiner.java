@@ -69,7 +69,7 @@ public class EventsListiner implements Listener {
     }
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent e){
-        if(e.getEntityType()!= EntityType.PLAYER&&e.getEntity() instanceof LivingEntity){
+        if(e.getEntityType()!= EntityType.PLAYER&&e.getEntity() instanceof LivingEntity&&e.getEntityType()!=EntityType.ENDER_DRAGON&&e.getEntityType()!=EntityType.WITHER){
             LivingEntity entity= (LivingEntity) e.getEntity();
             NamespacedKey health = new NamespacedKey("unhacked","entityhealth");
             entity.getPersistentDataContainer().set(health, PersistentDataType.DOUBLE,entity.getHealth());
@@ -78,7 +78,7 @@ public class EventsListiner implements Listener {
     }
     @EventHandler(priority = EventPriority.MONITOR,ignoreCancelled = true)
     public void onEntityDamage(EntityDamageEvent e){
-        if(e.getEntityType()!= EntityType.PLAYER&&e.getEntity() instanceof LivingEntity){
+        if(e.getEntityType()!= EntityType.PLAYER&&e.getEntity() instanceof LivingEntity&&e.getEntityType()!=EntityType.ENDER_DRAGON&&e.getEntityType()!=EntityType.WITHER){
             LivingEntity entity= (LivingEntity) e.getEntity();
             NamespacedKey healthNamespace = new NamespacedKey("unhacked","entityhealth");
             Double health = entity.getPersistentDataContainer().getOrDefault(healthNamespace,PersistentDataType.DOUBLE,Double.valueOf(-1));
@@ -95,7 +95,7 @@ public class EventsListiner implements Listener {
     }
     @EventHandler(priority = EventPriority.MONITOR,ignoreCancelled = true)
     public void onEntityHealthRegen(EntityRegainHealthEvent e){
-        if(e.getEntityType()!= EntityType.PLAYER&&e.getEntity() instanceof LivingEntity){
+        if(e.getEntityType()!= EntityType.PLAYER&&e.getEntity() instanceof LivingEntity&&e.getEntityType()!=EntityType.ENDER_DRAGON&&e.getEntityType()!=EntityType.WITHER){
             LivingEntity entity= (LivingEntity) e.getEntity();
             NamespacedKey healthNamespace = new NamespacedKey("unhacked","entityhealth");
             Double health = entity.getPersistentDataContainer().getOrDefault(healthNamespace,PersistentDataType.DOUBLE,Double.valueOf(-1));
@@ -104,7 +104,11 @@ public class EventsListiner implements Listener {
                 if(health>entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()){
                     health=entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
                     entity.getPersistentDataContainer().set(healthNamespace, PersistentDataType.DOUBLE,health);
-                    e.setAmount(0.0);
+                    e.setCancelled(true);
+                }
+                else{
+                    entity.getPersistentDataContainer().set(healthNamespace, PersistentDataType.DOUBLE,health);
+                    e.setCancelled(true);
                 }
             }
         }

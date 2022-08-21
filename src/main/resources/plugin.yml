@@ -18,8 +18,6 @@ permissions:
     default: op
     children:
       unhacked.command: true
-  unhacked.test:
-    description: test
+  unhacked.notification:
+    description: sends you notification when someone cheating
     default: op
-    children:
-      unhacked.command: true

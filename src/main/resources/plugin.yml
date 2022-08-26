@@ -3,6 +3,7 @@ version: '${version}'
 main: me.pythontest.unhacked.unhacked.Unhacked
 api-version: 1.18
 authors: [ pythontest ]
+depend: [ ProtocolLib ]
 description: Antycheat
 commands:
   unhacked:
